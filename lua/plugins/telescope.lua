@@ -17,7 +17,7 @@ return {
 		vim.keymap.set("n", "<leader><leader>", builtin.buffers)
 		vim.keymap.set("n", "<leader>fh", builtin.help_tags)
 		vim.keymap.set("n", "<leader>ss", builtin.builtin)
-		vim.keymap.set("n", "<leader>pw)s", function()
+		vim.keymap.set("n", "<leader>pws", function()
 			local word = vim.fn.expand("<cword>")
 			builtin.grep_string({ search = word })
 		end)
