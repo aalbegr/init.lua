@@ -1,35 +1,43 @@
 return {
-  -- obsidian
-  "epwalsh/obsidian.nvim",
-  version = "*", -- recommended, use latest release instead of latest commit
-  lazy = true,
-  ft = "markdown",
-  dependencies = {
-    -- Required.
-    "nvim-lua/plenary.nvim",
-  },
-  opts = {
-    workspaces = {
-      {
-        name = "personal",
-        path = "~/Documents/vaults/personal",
+  {
+    "epwalsh/obsidian.nvim",
+    version      = "*",
+    dependencies = { "nvim-lua/plenary.nvim" },
+
+    -- load when you run any Obsidian command or open a .md file
+    cmd = {
+      "ObsidianOpen",
+      "ObsidianToday",
+      "ObsidianSearch",
+      "ObsidianNew",
+    },
+    ft = { "markdown" },
+
+    opts = {
+      -- must be a list of tables, each with `name` and `path`
+      workspaces = {
+        {
+          name = "personal",
+          path = vim.fn.expand("~/Documents/vaults/personal"),
+        },
+        -- you can add more vaults/projects here:
+        -- {
+        --   name = "work",
+        --   path = vim.fn.expand("~/Documents/vaults/work"),
+        -- },
       },
-      --{
-      --  name = "work",
-      --  path = "~/vaults/work",
-      --},
+      -- (optional) pick which workspace to open by default
+      default_workspace = "personal",
     },
   },
 
-  -- pretty markdown
+  -- other markdown plugins…
   {
     "MeanderingProgrammer/render-markdown.nvim",
     enabled = false,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {},
   },
-
-  -- markdown preview
   {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -39,3 +47,4 @@ return {
     end,
   },
 }
+

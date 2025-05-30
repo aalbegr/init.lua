@@ -52,6 +52,15 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
+
+vim.keymap.set("n", "<leader>pS", function()
+  local pattern = vim.fn.input("Grep for > ")
+  if pattern == "" then return end
+  vim.cmd("silent! grep! " .. pattern .. " **/*")
+  vim.cmd("copen")
+end, { silent = true })
+
+
 -- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 -- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 -- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
